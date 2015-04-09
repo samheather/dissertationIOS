@@ -31,7 +31,7 @@ NSMutableData *_responseData;
 #pragma mark - Network stuff
 
 -(void)returnedDict:(NSDictionary *)returnedData {
-    [responseField setText:[returnedData description]];
+    [responseField setText:[returnedData objectForKey:@"answer"]];
 }
 
 -(void)transmitThisDictAsJson:(NSDictionary *)dictionary {

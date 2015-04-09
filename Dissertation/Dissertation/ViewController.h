@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController {
-IBOutlet UITextField *numberField;
-IBOutlet UITextField *questionField;
-IBOutlet UITextField *responseField;
+    IBOutlet UITextField *numberField;
+    IBOutlet UITextField *questionField;
+    IBOutlet UITextView *responseField;
 }
 
 -(IBAction)sendQuery:(id)sender;
