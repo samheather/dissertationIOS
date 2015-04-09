@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController {
+IBOutlet UITextField *numberField;
+IBOutlet UITextField *questionField;
+IBOutlet UITextField *responseField;
+}
 
+-(IBAction)sendQuery:(id)sender;
 
 @end
 
