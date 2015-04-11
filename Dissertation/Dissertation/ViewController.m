@@ -15,18 +15,47 @@
 @implementation ViewController
 
 NSMutableData *_responseData;
+NSString *number;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    [questionField setDelegate:self];
+    
+    // Participant ID
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Enter pID"
+                                                    message:@"  "
+                                                   delegate:self
+                                          cancelButtonTitle:@"Cancel"
+                                          otherButtonTitles:@"OK", nil];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    number = [alertView textFieldAtIndex:0].text;
 }
 
 -(IBAction)sendQuery:(id)sender {
     [responseField setText:@"Processing..."];
     [self transmitThisDictAsJson:@{
-                                   @"cellNumber" : [numberField text],
+                                   @"cellNumber" : number,
                                    @"question" : [questionField text]}];
 }
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (textField == questionField) {
+        [textField resignFirstResponder];
+        [self sendQuery:self];
+        return NO;
+    }
+    return YES;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)txtFld {
+    [txtFld setSelectedTextRange:[txtFld textRangeFromPosition:txtFld.beginningOfDocument toPosition:txtFld.endOfDocument]];
+}
+
 
 #pragma mark - Network stuff
 

@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController {
-    IBOutlet UITextField *numberField;
+@interface ViewController : UIViewController <UITextFieldDelegate> {
     IBOutlet UITextField *questionField;
     IBOutlet UITextView *responseField;
 }
