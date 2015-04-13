@@ -38,6 +38,7 @@ NSString *number;
 
 -(IBAction)sendQuery:(id)sender {
     [responseField setText:@"Processing..."];
+    [questionField resignFirstResponder];
     [self transmitThisDictAsJson:@{
                                    @"cellNumber" : number,
                                    @"question" : [questionField text]}];
@@ -45,7 +46,6 @@ NSString *number;
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if (textField == questionField) {
-        [textField resignFirstResponder];
         [self sendQuery:self];
         return NO;
     }
